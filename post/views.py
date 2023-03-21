@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 from post.forms import PostForm
 from post.models import Post
@@ -16,3 +16,7 @@ class PostCreateView(CreateView):
     success_url = reverse_lazy('home')
 
 
+class PostListView(ListView):
+    template_name = 'post/list_of_post.html'
+    model = Post
+    context_object_name = 'all_posts'
