@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
+{#<a href="{% url 'sign-in' %}">Sign In</a>#}
+{#<a href="{% url 'login' %}">Log in</a>#}
+{#<a href="{% url 'new-blog' %}">Blog</a>#}
+{#<a href="{% url 'view-blog' %}">View blog</a>#}
 
-
-{% block title %} Home {% endblock %}
+{% block title %} Homepage {% endblock %}
 
 
 {% block content %}
-
-    <a href="{% url 'sign-in' %}">Sign In</a>
-    <a href="{% url 'login' %}">Log in</a>
-    <a href="{% url 'new-blog' %}">Blog</a>
-    <a href="{% url 'view-blog' %}">View blog</a>
-
-
+{% for post in all_posts %}
+    {{ post.title }}
+{% endfor %}
 {% endblock %}

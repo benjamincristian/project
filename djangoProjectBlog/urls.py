@@ -23,6 +23,6 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
     path('', include('django.contrib.auth.urls')),
     path('', include('userextend.urls')),
-    path('', include('post.urls'))
+    path('', include('post.urls')),
 
 ]

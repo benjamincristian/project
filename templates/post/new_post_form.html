@@ -13,6 +13,7 @@
                     <form method="post">
                         {% csrf_token %} {# csrf- cross site request forgery. este un fel de sistem de securitate care protejeza formularul#}
                         <div class="card-body">
+                            {{ form.media }}
                             {{ form.as_p }}  {# as_p aranjeaza elementele formularului in paragrafe #}
                         </div>
                         <div class="card-footer text-center">
