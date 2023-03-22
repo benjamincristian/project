@@ -8,13 +8,24 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['image', 'title', 'description']
-        exclude = ['likes', 'date']
 
     widgets = {
-        'image': FileInput(attrs={'class': 'form-control',
-                                  'placeholder': 'Select an image to upload'}),
         'title': TextInput(attrs={'class': 'form-control',
                                   'placeholder': 'Enter the title'}),
         'description': Textarea(attrs={'class': 'form-control',
-                                       'placeholder': 'Write here...'})
+                                       'placeholder': 'Write here...'}),
+        'image': FileInput(attrs={'class': 'form-control',
+                                  'placeholder': 'Select an image to upload'})
     }
+
+
+class PostUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['image', 'title', 'description']
+
+        widgets = {
+            'image': FileInput(attrs={'class': 'form-control', 'placeholder': 'Select an image to upload'}),
+            'title': TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the title'}),
+            'description': Textarea(attrs={'class': 'form-control', 'placeholder': 'Write here...'})
+        }
