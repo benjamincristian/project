@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import TextInput, FileInput, Textarea
 
-from post.models import Post
+from post.models import Post, Comment
 
 
 class PostForm(forms.ModelForm):
@@ -28,4 +28,21 @@ class PostUpdateForm(forms.ModelForm):
             'image': FileInput(attrs={'class': 'form-control', 'placeholder': 'Select an image to upload'}),
             'title': TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the title'}),
             'description': Textarea(attrs={'class': 'form-control', 'placeholder': 'Write here...'})
+        }
+
+
+class PostCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['name', 'body']
+
+        widgets = {
+            'name': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your name'
+            }),
+            'body': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your comment here'
+            })
         }

@@ -1,13 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
-from post.forms import PostForm, PostUpdateForm
-from post.models import Post
-
-
-# Create your views here.
+from post.forms import PostForm, PostUpdateForm, PostCommentForm
+from post.models import Post, Comment
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -36,8 +35,27 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('view-blog')
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     template_name = 'post/detail_post.html'
     model = Post
 
 
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'post/detail_post.html'
+    model = Comment
+    form_class = PostCommentForm
+    success_url = reverse_lazy('detail-blog')
+
+
+@login_required
+def like_view(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('detail-blog', args=[str(pk)]))
+
+
+@login_required
+def dislike_view(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.dislikes.add(request.user)
+    return HttpResponseRedirect(reverse('detail-blog', args=[str(pk)]))

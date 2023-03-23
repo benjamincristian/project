@@ -14,21 +14,11 @@
                     </div>
                     <div class="card-body">
                         <a href="{% url 'detail-blog' post.id %}" class="card-title">{{ post.title }}</a>
-                        <p class="card-text">{{ post.image }}</p>
                         <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
                         <a href="{% url 'update-blog' post.id %}" class="btn btn-primary">Update</a>
                         <a href="{% url 'delete-blog' post.id %}" class="btn btn-primary">Delete</a>
 
                         <br><br>
-{#                        {% if not post.comments.all %}#}
-{#                            No comments yet#}
-{#                        {% else %}#}
-{#                            {% for comment in post.comments.all %}#}
-{#                                {{ comment.name | safe}}#}
-{#                                {{ comment.date_added | safe }}#}
-{#                                {{ comment.body | safe}}#}
-{#                            {% endfor %}#}
-{#                                {% endif %}#}
 
                     </div>
                 </div>

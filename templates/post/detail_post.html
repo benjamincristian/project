@@ -1,8 +1,64 @@
 {% extends 'base.html' %}
 
+{% block title %} Details - {{ student }} {% endblock %}
 
-{% block title %}{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        Details
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text"> {{ post.description | safe }}</p>
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" class="card-img-top" alt="..." height="400">
+                        {% endif %}
+                        <p class="card-text"></p>
+                        <a href="" class="btn btn-primary">Cancel</a>
+                        <form action="{% url 'like_post' post.pk %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
+                                Like {{ post.total_like }}</button>
+                        </form>
+                        <form action="{% url 'dislike_post' post.pk %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
+                                Dislike {{ post.total_dislike }}</button>
+                        </form>
+                        {% if not post.comments.all %}
+                            <h1>Add comment</h1>
+                            {{ form.as_p }}
+                        {% else %}
+                            {% for comment in post.comments.all %}
+                                {{ comment.name }}
+                                {{ comment.body }}
+                                {{ comment.date_added }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
 
 
 
-{% block content %}{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
