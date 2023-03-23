@@ -4,11 +4,7 @@
 {#<a href="{% url 'new-blog' %}">Blog</a>#}
 {#<a href="{% url 'view-blog' %}">View blog</a>#}
 
-{% block title %} Homepage {% endblock %}
-
 
 {% block content %}
-{% for post in all_posts %}
-    {{ post.title }}
-{% endfor %}
-{% endblock %}
+
+{%endblock%}
