@@ -19,6 +19,7 @@
                         {% endif %}
                         <p class="card-text"></p>
                         <a href="" class="btn btn-primary">Cancel</a>
+
                         <form action="{% url 'like_post' post.pk %}" method="post">
                             {% csrf_token %}
                             <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
@@ -29,6 +30,7 @@
                             <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
                                 Dislike {{ post.total_dislike }}</button>
                         </form>
+
                         {% if not post.comments.all %}
                             <h1>Add comment</h1>
                             {{ form.as_p }}

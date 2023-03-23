@@ -13,8 +13,12 @@ class Post(models.Model):
     title = models.CharField(max_length=200, null=True)
     description = RichTextField(blank=True, null=True)
     date = models.DateField(auto_now_add=True, null=True)
-    likes = models.ManyToManyField(User, related_name='blog_posts')
-    dislikes = models.ManyToManyField(User, related_name='blog')
+    likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
+    dislikes = models.ManyToManyField(User, related_name='blog', blank=True)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        ordering = ['-created_on']
 
     def total_like(self):
         return self.likes.count()
