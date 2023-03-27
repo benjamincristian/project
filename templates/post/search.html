@@ -19,57 +19,12 @@
                         {% for post in all_posts %}
                             <tr>
                                 <td>{{ post.title }}</td>
-                                <td>{{ post. }}</td>
-                                <td>{{ post.email }}</td>
-                                <td>{{ post.start_date|date:"d-m-Y" }}</td>
-                                <td>{{ post.end_date|date:"d-m-Y" }}</td>
-                                <td>{% if student.active %}
-                                    Yes
-                                {% else %}
-                                    No
-                                {% endif %}
-                                </td>
-                                <td>{{ student.gender }}</td>
-                                <td>
-                                    {% if student.trainer %}
-                                        {{ student.trainer }}
-                                    {% else %}
-                                        No trainer
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% if student.trainer.department %}
-                                        {{ student.trainer.department }}
-                                    {% else %}
-                                        No departament
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                           data-bs-toggle="dropdown" aria-expanded="false">
-                                            Actions
-                                        </a>
-
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="{% url 'update_student' student.id %}">Update</a>
-                                            </li>
-                                            <li><a class="dropdown-item" href="{% url 'delete-student' student.id %}">Delete</a>
-                                            </li>
-                                            <li><a class="dropdown-item" href="{% url 'detail-student' student.id %}">Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!--<a href="{% url 'update_student' student.id %}"
-                                       class="btn btn-outline-dark">Update</a>
-                                    <a href="{% url 'delete-student' student.id %}"
-                                       class="btn btn-outline-danger">Delete</a></td>-->
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 {% else %}
-                    <h3 class="text-center">No students</h3>
+                    <h3 class="text-center">No posts</h3>
                 {% endif %}
             </div>
         </div>
