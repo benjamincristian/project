@@ -9,10 +9,11 @@ Features:
 -Like/Dislike button
 -Newer posts appear on the top of the page
 -The users have the possibility to leave a comment under the posts
+-New users when they create an account, if they enter an already existing email or username, they will be informed in the sign-in form
 
 
 
-__________________________________________________________________________
+
 
 -New users don't have access to the posts, thus to the comments, like and dislikes until they sign in
--
+
