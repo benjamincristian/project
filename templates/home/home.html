@@ -1,10 +1,26 @@
 {% extends 'base.html' %}
-{#<a href="{% url 'sign-in' %}">Sign In</a>#}
-{#<a href="{% url 'login' %}">Log in</a>#}
-{#<a href="{% url 'new-blog' %}">Blog</a>#}
-{#<a href="{% url 'view-blog' %}">View blog</a>#}
+
 
 
 {% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="">
+                <h1 class="text-center" style="font-size: 100px; color: #f0d43a">Welcome!</h1>
+            </div>
+            <div>
 
-{%endblock%}
+                <card>
+                    <h1>Have an account? Log in</h1>
+                    <a href="{% url 'login' %}">Log in</a>
+                </card>
+                <card>
+                    <h1>Have an account? Sign in</h1>
+                    <a href="{% url 'sign-in' %}">Sign in</a>
+                </card>
+                <a href="{% url 'view-blog' %}">Content</a>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

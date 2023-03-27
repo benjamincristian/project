@@ -19,3 +19,5 @@ class UserListView(ListView):
     template_name = 'userextend/list_user.html'
     model = User
     context_object_name = 'all_users'
+
+

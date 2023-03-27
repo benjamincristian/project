@@ -16,7 +16,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('view-blog')
 
 
-class PostListView(LoginRequiredMixin, ListView):
+class PostListView(ListView):
     template_name = 'post/list_of_post.html'
     model = Post
     context_object_name = 'all_posts'

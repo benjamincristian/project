@@ -1,17 +1,14 @@
-from datetime import datetime
-
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 from django.db import models
-
-
-# Create your models here.
 
 
 class Post(models.Model):
     image = models.ImageField(null=True, blank=True)
     title = models.CharField(max_length=200, null=True)
     description = RichTextField(blank=True, null=True)
+    # small_description is a little insight of the actual content. This is going to be showed
+    small_description = models.TextField(null=True, blank=True)
     date = models.DateField(auto_now_add=True, null=True)
     likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
     dislikes = models.ManyToManyField(User, related_name='blog', blank=True)
