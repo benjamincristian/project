@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
@@ -41,7 +42,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'post/detail_post.html'
+    template_name = 'post/new_comment.html'
     model = Comment
     form_class = PostCommentForm
     success_url = reverse_lazy('detail-blog')
@@ -59,3 +60,14 @@ def dislike_view(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     post.dislikes.add(request.user)
     return HttpResponseRedirect(reverse('detail-blog', args=[str(pk)]))
+
+
+# @login_required()
+# def search_bar(request):
+#     get_value = request.GET.get('search')
+#     if get_value:
+#         posts = Post.objects.filter(Q(title__icontains=get_value))
+#     else:
+#         posts = {}
+#
+#     return render(request, 'post/detail_post.html', {'all_posts': posts})
