@@ -12,5 +12,5 @@ urlpatterns = [
     path('like/<int:pk>/', like_view, name='like_post'),
     path('dislike/<int:pk>/', dislike_view, name='dislike_post'),
     path('new_comment/', views.CommentCreateView.as_view(), name='new-comment'),
-    # path('search/', views.search_bar, name='search')
+    path('search/', views.search_bar, name='search')
     ]
