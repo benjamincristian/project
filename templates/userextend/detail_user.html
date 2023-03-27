@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{% endblock %}
+
+
+
+{% block content %}
+    <div>
+        <h1>{{ user.name }}</h1>
+        <p>{{ user.username }}</p>
+        <p>{{ user.email }}</p>
+        {% if user.is_superuser %}
+            You donkey, you can't delete your account!
+        {% else %}
+            <a href="{% url 'delete-user' user.id %}">Delete account</a>
+        {% endif %}
+    </div>
+{% endblock %}

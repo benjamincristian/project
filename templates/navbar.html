@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #22b2da">
     <div class="container-fluid">
-        <img class="navbar-brand" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimages_k%2Fbears-logo-transparent%2Fbears-logo-transparent-8.png&f=1&nofb=1&ipt=9b6f724f443e20de8c7bcab7ae8802b0dc1c161da96e5839c84b3e390552ac47&ipo=images" width="40px" height="45px" >
+        <img class="navbar-brand"
+             src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimages_k%2Fbears-logo-transparent%2Fbears-logo-transparent-8.png&f=1&nofb=1&ipt=9b6f724f443e20de8c7bcab7ae8802b0dc1c161da96e5839c84b3e390552ac47&ipo=images"
+             width="40px" height="45px">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,10 +26,13 @@
 
                         <li><a class="dropdown-item" href="{% url 'sign-in' %}">Sign in</a></li>
 
+
+
                         {% if user.is_authenticated %}
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            <li><a class="dropdown-item" href="{% url 'detail-user' user.id %}">My account</a></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                         {% endif %}
                     </ul>
