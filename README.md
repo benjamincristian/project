@@ -5,6 +5,7 @@ Features:
 -Possibility for the owner to update the posts (UpdateView)
 -Possibility for the owner to delete the posts (DeleteView)
 -The owner has a fancy text editor in the admin access area
+-Possibility to add an image or severals to the posts
 -Sign in/Log in button
 -Like/Dislike button
 -Newer posts appear on the top of the page
