@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #22b2da">
+<nav class="navbar navbar-expand-lg" style="background-color: #eaf6f6">
     <div class="container-fluid">
         <img class="navbar-brand"
              src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimages_k%2Fbears-logo-transparent%2Fbears-logo-transparent-8.png&f=1&nofb=1&ipt=9b6f724f443e20de8c7bcab7ae8802b0dc1c161da96e5839c84b3e390552ac47&ipo=images"
@@ -41,8 +41,8 @@
                     {#          <a class="nav-link disabled">Disabled</a>#}
                 </li>
             </ul>
-                  <form class="d-flex" role="search" action="{% url 'search' %}">
-                    <input class="form-control me-2" type="search" placeholder="Search for posts" aria-label="Search">
+                  <form method="get" class="d-flex" role="search" action="{% url 'search' %}">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Search for posts" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
         </div>

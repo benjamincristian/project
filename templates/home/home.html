@@ -5,22 +5,28 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="">
-                <h1 class="text-center" style="font-size: 100px; color: #f0d43a">Welcome!</h1>
-            </div>
-            <div>
-
-                <card>
-                    <h1>Have an account? Log in</h1>
-                    <a href="{% url 'login' %}">Log in</a>
-                </card>
-                <card>
-                    <h1>Have an account? Sign in</h1>
-                    <a href="{% url 'sign-in' %}">Sign in</a>
-                </card>
-                <a href="{% url 'view-blog' %}">Content</a>
+            <div class="col-md-8 offset-md-2">
+                <h1 class="text-center">Welcome!</h1>
+                <p class="text-center" style="font-size: larger;">
+                    Welcome! Or welcome back if you already knew about this site! This website was made as a final
+                    project by a student. You can admire all the beautiful functionalities that have been implemented
+                    and try them out. You can sign in if you don't have an account or log in if you already have one.
+                    You can read all the posts you want and if you like them you can leave a comment and a like, or a
+                    dislike and a comment where you point out what you didn't like about that specific post, because we
+                    want the people to know if a post is worth reading or not.
+                    Maybe you are here because you are sick of this blog and you want to delete your account.
+                    You can, we won't stop you! <br>Enjoy your stay!
+                </p>
+                {% if user.is_authenticated %}
+                    <br><br><br>
+                    <p class="text-center">Content</p>
+                {% else %}
+                    <form action="{% url 'sign-in' %}" class="inline text-center"><button class="button-49">Sign in</button></form>
+                    <form action="{% url 'login' %}" class="inline text-center"><button class="button-49">Log in</button></form>
+                {% endif %}
             </div>
         </div>
-
     </div>
 {% endblock %}
+
+
