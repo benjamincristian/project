@@ -9,6 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="">
+            <br>
                 <h1>{{ user.username }}</h1>
                 <hr class="solid" style="border-top: 3px solid #bbb;">
                 <h3>Hello {{ user.first_name }}, these are the information related to your account. You can change
@@ -29,8 +30,6 @@
                         <h6 style="font-size: small">Delete your account</h6>
                     </form>
                 {% endif %}
-
-
             </div>
         </div>
     </div>
@@ -38,10 +37,3 @@
 
 
 
-
-<div>
-    <h1>{{ user.name }}</h1>
-    <p>{{ user.username }}</p>
-    <p>{{ user.email }}</p>
-
-</div>

@@ -3,36 +3,21 @@
 {% block title %} Details {% endblock %}
 
 {% block content %}
-    <br>
     <div class="container-fluid">
         <div class="row">
-            <div>
-                <div class="card">
-                    {% for post in all_posts %}
-
-
-
-                            <a href="{% url 'detail-blog' post.id %}" class="card-title">{{ post.title }}</a>
-                        {% if post.description %}
-                            <p>{{ post.small_description }}</p>
-                        {% else %}
-                            No description
-                        {% endif %}
-                        {{ post.created_on }}
-                        {{ post.total_like }}
-                        {{ post.total_dislike }}
-{#                            <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>#}
-{#                            <a href="{% url 'update-blog' post.id %}" class="btn btn-primary">Update</a>#}
-{#                            <a href="{% url 'delete-blog' post.id %}" class="btn btn-primary">Delete</a>#}
-
-
-
-
-
-                    {% endfor %}
-                </div>
+            <div class="">
+                {% for post in all_posts %}
+                    <br>
+                    <a href="{% url 'detail-blog' post.id %}" style="font-size: large">• {{ post.title }}</a>
+                    {% if post.description %}
+                        <h6>{{ post.small_description }}</h6>
+                    {% endif %}
+                    Release date: {{ post.created_on }}
+                    Likes: {{ post.total_like }}
+                    Dislikes: {{ post.total_dislike }}
+                     <hr class="solid" style="border-top: 3px solid #bbb;">
+                {% endfor %}
             </div>
         </div>
     </div>
-
 {% endblock %}
