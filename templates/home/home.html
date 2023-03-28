@@ -6,7 +6,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 offset-md-2">
+            <br>
                 <h1 class="text-center">Welcome!</h1>
+            <br>
                 <p class="text-center" style="font-size: larger;">
                     Welcome! Or welcome back if you already knew about this site! This website was made as a final
                     project by a student. You can admire all the beautiful functionalities that have been implemented
@@ -18,7 +20,7 @@
                     You can, we won't stop you! <br>Enjoy your stay!
                 </p>
                 {% if user.is_authenticated %}
-                    <br><br><br>
+                    <br>
                     <form action="{% url 'view-blog' %}" class="text-center">
                         <button class="button-49">Posts</button>
                     </form>
@@ -27,16 +29,19 @@
                         <p>{{ post.description }}</p>
                     {% endfor %}
                 {% else %}
-                    <br><br>
+                    <br>
                     <div class="row">
                         <div class="col-md-6">
                             <form action="{% url 'sign-in' %}" class="inline text-center">
                                 <button class="button-49">Sign in</button>
+                                <h6 style="font-size: small">Create a new account!</h6>
                             </form>
                         </div>
                         <div class="col-md-6">
+
                             <form action="{% url 'login' %}" class="inline text-center">
                                 <button class="button-49">Log in</button>
+                                <h6 style="font-size: small">Have an account already? Log-in!</h6>
                             </form>
                         </div>
                     </div>

@@ -6,14 +6,42 @@
 
 
 {% block content %}
-    <div>
-        <h1>{{ user.name }}</h1>
-        <p>{{ user.username }}</p>
-        <p>{{ user.email }}</p>
-        {% if user.is_superuser %}
-            You donkey, you can't delete your account!
-        {% else %}
-            <a href="{% url 'delete-user' user.id %}">Delete account</a>
-        {% endif %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="">
+                <h1>{{ user.username }}</h1>
+                <hr class="solid" style="border-top: 3px solid #bbb;">
+                <h3>Hello {{ user.first_name }}, these are the information related to your account. You can change
+                    them if you want.</h3>
+                <br>
+                <h5>First name: {{ user.first_name }}</h5>
+                <h5>Last name: {{ user.last_name }}</h5>
+                <h5>Username: {{ user.username }}</h5>
+                <h5>Email: {{ user.email }}</h5>
+                <br>
+                <hr class="solid" style="border-top: 3px solid #bbb;">
+                {% if user.is_superuser %}
+                    You donkey, you can't delete your account!
+                {% else %}
+                    <br><br>
+                    <form action="{% url 'delete-user' user.id %}" class="inline text-center">
+                        <button class="button-49">Delete</button>
+                        <h6 style="font-size: small">Delete your account</h6>
+                    </form>
+                {% endif %}
+
+
+            </div>
+        </div>
     </div>
 {% endblock %}
+
+
+
+
+<div>
+    <h1>{{ user.name }}</h1>
+    <p>{{ user.username }}</p>
+    <p>{{ user.email }}</p>
+
+</div>
