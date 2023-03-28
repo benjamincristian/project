@@ -13,28 +13,19 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#"></a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        Dropdown
+                        My account, {{ user.username }}
                     </a>
-                    <ul class="dropdown-menu">
-
-                        <li><a class="dropdown-item" href="{% url 'login' %}">Log in</a></li>
-
-                        <li><a class="dropdown-item" href="{% url 'sign-in' %}">Sign in</a></li>
-
-
-
-                        {% if user.is_authenticated %}
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                {% endif %}
+                            <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'detail-user' user.id %}">My account</a></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
-                        {% endif %}
+
                     </ul>
                 </li>
                 <li class="nav-item">

@@ -19,11 +19,32 @@
                 </p>
                 {% if user.is_authenticated %}
                     <br><br><br>
-                    <p class="text-center">Content</p>
+                    <form action="{% url 'view-blog' %}" class="text-center">
+                        <button class="button-49">Posts</button>
+                    </form>
+                    {% for post in all_posts %}
+                        <p>{{ post.title }}</p>
+                        <p>{{ post.description }}</p>
+                    {% endfor %}
                 {% else %}
-                    <form action="{% url 'sign-in' %}" class="inline text-center"><button class="button-49">Sign in</button></form>
-                    <form action="{% url 'login' %}" class="inline text-center"><button class="button-49">Log in</button></form>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="{% url 'sign-in' %}" class="inline text-center">
+                                <button class="button-49">Sign in</button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form action="{% url 'login' %}" class="inline text-center">
+                                <button class="button-49">Log in</button>
+                            </form>
+                        </div>
+                    </div>
+
+
                 {% endif %}
+
+
             </div>
         </div>
     </div>

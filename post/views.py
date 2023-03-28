@@ -48,8 +48,11 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('detail-blog')
 
     # def form_valid(self, form):
-    #     form.instance.post = self.request.post
-    #     return super().form_valid(form)
+    #     # Associate the comment with the logged user
+    #     form.instance.user = self.request.user
+    #     # Associate the comment with the parent post
+    #     # form.instance.post_id = get_object_or_404(Post, pk=self.kwargs['post_id'])
+    #     return super(CommentCreateView, self).form_valid(form)
 
 
 @login_required
