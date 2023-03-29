@@ -3,12 +3,12 @@
 {% block title %} Create User {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 25px; margin-bottom: 25px;">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center"> Create a new user</h3>
+                        <h3 class="text-center"> New account </h3>
                     </div>
                     <form method="post">
                         {% csrf_token %} {# csrf- cross site request forgery. este un fel de sistem de securitate care protejeza formularul#}

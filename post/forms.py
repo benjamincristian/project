@@ -34,7 +34,7 @@ class PostUpdateForm(forms.ModelForm):
 class PostCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['name', 'body']
+        fields = ['body']
 
         widgets = {
             'name': TextInput(attrs={

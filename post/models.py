@@ -23,6 +23,9 @@ class Post(models.Model):
     def total_dislike(self):
         return self.dislikes.count()
 
+    def total_comments(self):
+        return self.comments.count()
+
 
 class Comment(models.Model):
     post_id = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
@@ -32,5 +35,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.post_id.title, self.name)
+
+
 
 

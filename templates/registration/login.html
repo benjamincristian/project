@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Log in{% endblock %}
 {% block content %}
-    <br><br><br>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 offset-3">
+            <div class="col-md-6 offset-3" style="margin-top: 100px;">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="text-center">Login</h3>
@@ -13,10 +12,8 @@
                             <div class="card-body">
                                 {{ form.as_p }}
                             </div>
-                            <div class="card-footer">
-
-                                <button class="btn btn-success" type="submit" role="button">Log in</button>
-
+                            <div class="card-footer text-center">
+                                <button class="button-49" type="submit" role="button">Log in</button>
 {#                                <a href="{% url 'password_reset' %}" class="btn btn-outline-danger">Reset password</a>#}
                             </div>
                         </form>

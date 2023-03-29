@@ -11,19 +11,19 @@
                         <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Description</th>
-                            <th>Email</th>
+                            <th>Posted on</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for post in all_posts %}
                             <tr>
                                 <td>{{ post.title }}</td>
+                                <td>{{ post.created_on }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
-                {% else %}
+                        {% else %}
                     <h3 class="text-center">No posts</h3>
                 {% endif %}
             </div>

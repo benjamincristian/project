@@ -12,9 +12,10 @@
                     {% if post.description %}
                         <h6>{{ post.small_description }}</h6>
                     {% endif %}
-                    Release date: {{ post.created_on }}
-                    Likes: {{ post.total_like }}
-                    Dislikes: {{ post.total_dislike }}
+                    Posted on: {{ post.created_on }} |
+                    Likes: {{ post.total_like }} |
+                    Dislikes: {{ post.total_dislike }} |
+                    Comments: {{ post.total_comments }}
                      <hr class="solid" style="border-top: 3px solid #bbb;">
                 {% endfor %}
             </div>

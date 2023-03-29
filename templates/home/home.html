@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-
+{% block title %}{% endblock %}
 
 {% block content %}
     <div class="container-fluid">
@@ -38,18 +38,13 @@
                             </form>
                         </div>
                         <div class="col-md-6">
-
                             <form action="{% url 'login' %}" class="inline text-center">
                                 <button class="button-49">Log in</button>
                                 <h6 style="font-size: small">Have an account already? Log-in!</h6>
                             </form>
                         </div>
                     </div>
-
-
                 {% endif %}
-
-
             </div>
         </div>
     </div>

@@ -7,23 +7,33 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 offset-md-3">
+
                     <h5>{{ post.title }}</h5>
+
                     <p> {{ post.description | safe }}</p>
+
                     {% if post.image %}
                         <img src="{{ post.image.url }}" class="card-img-top" alt="..." height="400">
                     {% endif %}
+
+                    {#like form#}
                     <form action="{% url 'like_post' post.pk %}" method="post">
                         {% csrf_token %}
                         <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
                             Like {{ post.total_like }}</button>
                     </form>
+
+                    {#dislike form#}
                     <form action="{% url 'dislike_post' post.pk %}" method="post">
                         {% csrf_token %}
                         <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
                             Dislike {{ post.total_dislike }}</button>
                     </form>
-                    <h1>Add comment</h1>
+
+                    <h3>Add comment</h3>
+
                     <a href="{% url 'new-comment' %}">Add comment</a>
+
                     {% for comment in post.comments.all %}
                         {{ comment.name }}
                         {{ comment.body }}
