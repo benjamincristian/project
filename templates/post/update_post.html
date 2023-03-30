@@ -3,23 +3,17 @@
 {% block title %}  {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-bottom: 30px;">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="text-center"> </h3>
+            <div class="">
+                <form method="post">
+                    {% csrf_token %}
+                        {{ form.media }}
+                        {{ form.as_p | safe }}
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-outline-success">Save</button>
                     </div>
-                    <form method="post">
-                        {% csrf_token %} {# csrf- cross site request forgery. este un fel de sistem de securitate care protejeza formularul#}
-                        <div class="card-body">
-                            {{ form.as_p }}  {# as_p aranjeaza elementele formularului in paragrafe #}
-                        </div>
-                        <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-outline-success">Save</button>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>

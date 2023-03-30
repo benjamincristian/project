@@ -16,7 +16,19 @@
                     Likes: {{ post.total_like }} |
                     Dislikes: {{ post.total_dislike }} |
                     Comments: {{ post.total_comments }}
-                     <hr class="solid" style="border-top: 3px solid #bbb;">
+                    {% if user.is_superuser %}
+                        <div class="dropdown">
+                            <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'update-blog' post.id %}">Update</a></li>
+                                <li><a class="dropdown-item" href="{% url 'delete-blog' post.id %}">Delete</a></li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <hr class="solid" style="border-top: 3px solid #bbb;">
                 {% endfor %}
             </div>
         </div>
