@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import TextInput, FileInput, Textarea
 
-from post.models import Post, Comment
+from post.models import Post, BlogComment
 
 
 class PostForm(forms.ModelForm):
@@ -31,18 +31,14 @@ class PostUpdateForm(forms.ModelForm):
         }
 
 
-class PostCommentForm(forms.ModelForm):
+class NewCommentForm(forms.ModelForm):
     class Meta:
-        model = Comment
-        fields = ['body']
+        model = BlogComment
+        fields = ['content']
 
         widgets = {
-            'name': TextInput(attrs={
+            'content': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter your name'
-            }),
-            'body': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter your comment here'
+                'placeholder': 'Leave a comment...'
             })
         }

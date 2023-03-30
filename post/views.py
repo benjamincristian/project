@@ -6,8 +6,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
-from post.forms import PostForm, PostUpdateForm, PostCommentForm
-from post.models import Post, Comment
+from post.forms import PostForm, PostUpdateForm, NewCommentForm
+from post.models import Post, BlogComment
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -40,19 +40,22 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     template_name = 'post/detail_post.html'
     model = Post
 
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
 
-class CommentCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'post/new_comment.html'
-    model = Comment
-    form_class = PostCommentForm
-    success_url = reverse_lazy('detail-blog')
+        # we retrieve all the comments stored in the PostBlog object, then we store them in the variable below
+        comments_connected = BlogComment.objects.filter(blogpost_connected=self.get_object())
+        data['comments'] = comments_connected
+        if self.request.user.is_authenticated:
+            data['comment_form'] = NewCommentForm(instance=self.request.user)
+        return data
 
-    # def form_valid(self, form):
-    #     # Associate the comment with the logged user
-    #     form.instance.user = self.request.user
-    #     # Associate the comment with the parent post
-    #     # form.instance.post_id = get_object_or_404(Post, pk=self.kwargs['post_id'])
-    #     return super(CommentCreateView, self).form_valid(form)
+    def post(self, request, *args, **kwargs):
+        new_comment = BlogComment(content=request.POST.get('content'),
+                                  author=self.request.user,
+                                  blogpost_connected=self.get_object())
+        new_comment.save()
+        return self.get(self, request, *args, **kwargs)
 
 
 @login_required
