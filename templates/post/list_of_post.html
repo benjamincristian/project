@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="">
+            <div class="col-md-8 offset-md-2">
                 {% for post in all_posts %}
                     <br>
                     <a href="{% url 'detail-blog' post.id %}" style="font-size: large">• {{ post.title }}</a>

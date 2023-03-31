@@ -69,6 +69,7 @@ def like_view(request, pk):
     return HttpResponseRedirect(reverse('detail-blog', args=[str(pk)]))
 
 
+@login_required
 def comment_like_view(request, pk):
     comment = get_object_or_404(PostComment, id=request.POST.get('comment_id'))
     comment.likes.add(request.user)
@@ -86,7 +87,7 @@ def dislike_view(request, pk):
 def search_bar(request):
     get_value = request.GET.get('search')
     if get_value:
-        posts = Post.objects.filter(Q(title__icontains=get_value))
+        posts = Post.objects.filter(Q(title__icontains=get_value) | Q(small_description__icontains=get_value))
     else:
         posts = {}
 

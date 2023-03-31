@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}  {% endblock %}
+{% block title %} {% endblock %}
 
 {% block content %}
-    <div class="container-fluid" style="margin-bottom: 30px;">
+    <div class="container-fluid" style="margin-bottom: 30px; margin-top: 40px;">
         <div class="row">
-            <div class="">
+            <div class="col-md-8 offset-md-2">
                 <form method="post">
                     {% csrf_token %}
                         {{ form.media }}
                         {{ form.as_p | safe }}
                     <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-outline-success">Save</button>
+                        <button type="submit" class="button-49">Save</button>
                     </div>
                 </form>
             </div>

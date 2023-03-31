@@ -1,36 +1,45 @@
 {% extends 'base.html' %}
 
-{% block title %} Details - {{ student }} {% endblock %}
+{% block title %}  {% endblock %}
 
 {% block content %}
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-8 offset-md-2">
 
-                <h5>{{ post.title }}</h5>
-
+                <h1 class="text-center">{{ post.title }}</h1>
+                <hr class="solid" style="border-top: 3px solid #bbb;">
                 <p> {{ post.description | safe }}</p>
 
                 {% if post.image %}
                     <img src="{{ post.image.url }}" class="card-img-top" alt="..." height="400">
                 {% endif %}
 
-                {#like form#}
-                <form action="{% url 'like_post' post.pk %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
-                        Like {{ post.total_like }}</button>
-                </form>
+                <hr class="solid" style="border-top: 3px solid #bbb;">
 
-                {#dislike form#}
-                <form action="{% url 'dislike_post' post.pk %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
-                        Dislike {{ post.total_dislike }}</button>
-                </form>
+                <div class="row">
+                    <div class="col-1">
+                        {#like form#}
+                        <form action="{% url 'like_post' post.pk %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
+                                Like {{ post.total_like }}</button>
+                        </form>
+                    </div>
+                    <div class="col-1">
+                        {#dislike form#}
+                        <form action="{% url 'dislike_post' post.pk %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
+                                Dislike {{ post.total_dislike }}</button>
+                        </form>
+                    </div>
+                </div>
 
-                <h2>Leave your comment!</h2>
+                <hr class="solid" style="border-top: 3px solid #bbb;">
+
+                <h2 style="margin-top: 20px;">Leave a comment!</h2>
                 <div id="comments_section">
 
                     {% if user.is_authenticated %}
@@ -38,7 +47,8 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 {{ comment_form }}
-                                <button class="btn btn-info" type="submit">Add comment <i class="fas fa-comments"></i>
+                                <button class="button-49" type="submit" style="margin-top: 20px; margin-bottom: 20px;">
+                                    Add comment <i class="fas fa-comments"></i>
                                 </button>
                             </div>
                         </form>
@@ -56,7 +66,7 @@
                                 <li>
                                     <div>
                                         <span>
-                                          <strong class="text-info">{{ comment.author }} </strong>
+                                          <strong style="color: red;">{{ comment.author }} </strong>
                                           <small class="text-muted">{{ comment.date_posted }}</small>
                                         </span>
                                         <p>
@@ -69,12 +79,6 @@
                     {% else %}
                         <strong class="text-secondary">No comments yet...</strong>
                     {% endif %}
-
-{#                    <form action="{% url 'comment-like' post.pk %}" method="post">#}
-{#                        {% csrf_token %}#}
-{#                        <button type="submit" name="comment_id" value="{{ comments.id }}" class="btn btn-primary">#}
-{#                            Like </button>#}
-{#                    </form>#}
                 </div>
             </div>
         </div>
