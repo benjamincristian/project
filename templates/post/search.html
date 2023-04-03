@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} List of student {% endblock %}
+{% block title %} {% endblock %}
 
 {% block content %}
     <div class="container-fluid">
@@ -17,7 +17,7 @@
                         <tbody>
                         {% for post in all_posts %}
                             <tr>
-                                <td>{{ post.title }}</td>
+                                <td><a href="{% url 'detail-blog' post.id %}">{{ post.title }}</a></td>
                                 <td>{{ post.created_on }}</td>
                             </tr>
                         {% endfor %}
