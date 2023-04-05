@@ -14,8 +14,8 @@
                             <h6>{{ post.small_description }}</h6>
                         {% endif %}
                         Posted on: {{ post.created_on }} |
-                        Likes: {{ post.total_like }} |
-                        Dislikes: {{ post.total_dislike }} |
+                        Appreciations: {{ post.total_like }} |
+{#                        Dislikes: {{ post.total_dislike }} |#}
                         Comments: {{ post.total_comments }}
                         {% if perms.post %}
                             <div class="dropdown">

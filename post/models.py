@@ -8,6 +8,7 @@ class Post(models.Model):
     image = models.ImageField(null=True, blank=True)
     title = models.CharField(max_length=200, null=True)
     description = RichTextField(blank=True, null=True)
+    tags = models.CharField(max_length=200, null=True)
     small_description = models.TextField(null=True, blank=True)
     date = models.DateField(auto_now_add=True, null=True)
     likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
