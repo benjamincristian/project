@@ -1,19 +1,20 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from post.forms import PostForm, PostUpdateForm, NewCommentForm
 from post.models import Post, PostComment
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     template_name = 'post/new_post_form.html'
     model = Post
     form_class = PostForm
     success_url = reverse_lazy('view-blog')
+    permission_required = 'post.add_post'
 
 
 class PostListView(LoginRequiredMixin, ListView):
@@ -22,17 +23,19 @@ class PostListView(LoginRequiredMixin, ListView):
     context_object_name = 'all_posts'
 
 
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'post/update_post.html'
     form_class = PostUpdateForm
     model = Post
     success_url = reverse_lazy('view-blog')
+    permission_required = 'post.change_post'
 
 
-class PostDeleteView(LoginRequiredMixin, DeleteView):
+class PostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     template_name = 'post/delete_post.html'
     model = Post
     success_url = reverse_lazy('view-blog')
+    permission_required = 'post.delete_post'
 
 
 class PostDetailView(LoginRequiredMixin, DetailView):
@@ -92,3 +95,9 @@ def search_bar(request):
         posts = {}
 
     return render(request, 'post/search.html', {'all_posts': posts})
+
+
+@login_required()
+def activate_deactivate_post(request, pk):
+    Post.objects.filter(id=pk).update(active=False)
+    return redirect('view-blog')

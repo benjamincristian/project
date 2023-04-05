@@ -7,28 +7,43 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 {% for post in all_posts %}
-                    <br>
-                    <a href="{% url 'detail-blog' post.id %}" style="font-size: large">• {{ post.title }}</a>
-                    {% if post.description %}
-                        <h6>{{ post.small_description }}</h6>
+                    {% if post.active %}
+                        <br>
+                        <a href="{% url 'detail-blog' post.id %}" style="font-size: large">• {{ post.title }}</a>
+                        {% if post.description %}
+                            <h6>{{ post.small_description }}</h6>
+                        {% endif %}
+                        Posted on: {{ post.created_on }} |
+                        Likes: {{ post.total_like }} |
+                        Dislikes: {{ post.total_dislike }} |
+                        Comments: {{ post.total_comments }}
+                        {% if perms.post %}
+                            <div class="dropdown">
+                                <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+
+                                    {% if perms.post.change_post %}
+                                        <li><a class="dropdown-item" href="{% url 'update-blog' post.id %}">Update</a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if perms.post.delete_post %}
+                                        <li><a class="dropdown-item" href="{% url 'delete-blog' post.id %}">Delete</a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if not post.activate %}
+                                        <li><a class="dropdown-item" href="{% url 'activate-deactivate' post.id %}">Activate/Deactivate</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <hr class="solid" style="border-top: 3px solid #bbb;">
                     {% endif %}
-                    Posted on: {{ post.created_on }} |
-                    Likes: {{ post.total_like }} |
-                    Dislikes: {{ post.total_dislike }} |
-                    Comments: {{ post.total_comments }}
-                    {% if user.is_superuser %}
-                        <div class="dropdown">
-                            <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'update-blog' post.id %}">Update</a></li>
-                                <li><a class="dropdown-item" href="{% url 'delete-blog' post.id %}">Delete</a></li>
-                            </ul>
-                        </div>
-                    {% endif %}
-                    <hr class="solid" style="border-top: 3px solid #bbb;">
                 {% endfor %}
             </div>
         </div>

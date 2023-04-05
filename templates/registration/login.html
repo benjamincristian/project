@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
 {% block title %}Log in{% endblock %}
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 offset-3" style="margin-top: 100px;">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="text-center">Login</h3>
-                        <form method="post">
-                            {% csrf_token %}
-                            <div class="card-body">
-                                {{ form.as_p }}
-                            </div>
-                            <div class="card-footer text-center">
-                                <button class="button-49" type="submit" role="button">Log in</button>
-{#                                <a href="{% url 'password_reset' %}" class="btn btn-outline-danger">Reset password</a>#}
-                            </div>
-                        </form>
+    {% if not user.is_authenticated %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 offset-3" style="margin-top: 100px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="text-center">Login</h3>
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="card-body">
+                                    {{ form.as_p }}
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button class="button-49" type="submit" role="button">Log in</button>
+                                    {#                                <a href="{% url 'password_reset' %}" class="btn btn-outline-danger">Reset password</a>#}
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div class="container-fluid">
+            <h1 class="text-center">You are already authenticated!</h1>
+        </div>
+    {% endif %}
 {% endblock %}

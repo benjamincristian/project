@@ -6,20 +6,31 @@
     <div class="container-fluid" style="margin-top: 25px; margin-bottom: 25px;">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="text-center"> New account </h3>
+                {% if not user.is_authenticated %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="text-center"> New account </h3>
+                        </div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                {{ form.as_p }}
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="button-49" type="submit" role="button">Sign in</button>
+                            </div>
+                        </form>
                     </div>
-                    <form method="post">
-                        {% csrf_token %} {# csrf- cross site request forgery. este un fel de sistem de securitate care protejeza formularul#}
-                        <div class="card-body">
-                            {{ form.as_p }}  {# as_p aranjeaza elementele formularului in paragrafe #}
+                {% else %}
+                    <div class="container-fluid" style="margin-top: 25px; margin-bottom: 25px;">
+                        <div class="row">
+                            <div class="">
+                                <h1 class="text-center">You are still logged in! If you want to create a new account,
+                                    log out!</h1>
+                            </div>
                         </div>
-                        <div class="card-footer text-center">
-                            <button class="button-49" type="submit" role="button">Sign in</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

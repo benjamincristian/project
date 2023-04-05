@@ -13,6 +13,7 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
     dislikes = models.ManyToManyField(User, related_name='blog', blank=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
+    active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['-created_on']

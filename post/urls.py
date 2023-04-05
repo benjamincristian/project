@@ -11,5 +11,6 @@ urlpatterns = [
     path('like/<int:pk>/', like_view, name='like_post'),
     path('dislike/<int:pk>/', dislike_view, name='dislike_post'),
     path('search/', views.search_bar, name='search'),
-    path('comment_like/<int:pk>/', comment_like_view, name='comment-like')
+    path('comment_like/<int:pk>/', comment_like_view, name='comment-like'),
+    path('activate_deactivate/<int:pk>/', views.activate_deactivate_post, name='activate-deactivate')
 ]
