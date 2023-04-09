@@ -12,6 +12,9 @@
                         <tr>
                             <th>Title</th>
                             <th>Posted on</th>
+                            {% if user.is_superuser %}
+                                <th>Actions</th>
+                            {% endif %}
                         </tr>
                         </thead>
                         <tbody>
@@ -19,11 +22,40 @@
                             <tr>
                                 <td><a href="{% url 'detail-blog' post.id %}">{{ post.title }}</a></td>
                                 <td>{{ post.created_on }}</td>
+                                {% if user.is_superuser %}
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-danger dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <ul class="dropdown-menu">
+
+                                                {% if perms.post.change_post %}
+                                                    <li><a class="dropdown-item" href="{% url 'update-blog' post.id %}">Update</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if perms.post.delete_post %}
+                                                    <li><a class="dropdown-item" href="{% url 'delete-blog' post.id %}">Delete</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if not post.activate %}
+                                                    <li><a class="dropdown-item"
+                                                           href="{% url 'activate-deactivate' post.id %}">Activate/Deactivate</a>
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
-                        {% else %}
+                {% else %}
                     <h3 class="text-center">No posts</h3>
                 {% endif %}
             </div>

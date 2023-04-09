@@ -6,13 +6,16 @@ from post.models import Post, PostComment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['image', 'title', 'tags', 'description']
+        fields = ['image', 'title', 'tags', 'description', 'small_description']
 
         widgets = {
             'title': TextInput(attrs={'class': 'form-control',
-                                      'placeholder': 'Enter the title...'}),
+                                      'placeholder': 'This is going to appear on the page with all the posts'}),
             'description': Textarea(attrs={'class': 'form-control',
                                            'placeholder': 'Write here...'}),
+            'small_description': TextInput(attrs={'class': 'form-control',
+                                                  'placeholder': 'This is going to appear on the page with '
+                                                                 'all the posts'}),
             'image': FileInput(attrs={'class': 'form-control',
                                       'placeholder': 'Select an image to upload'}),
             'tags': TextInput(attrs={'class': 'form-control',
