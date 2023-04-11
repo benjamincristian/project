@@ -22,6 +22,13 @@ class PostForm(forms.ModelForm):
                                      'placeholder': 'Enter the tags related to this post...'})
         }
 
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        all_posts = Post.objects.filter(title__exact=cleaned_data.get('title'))
+        if all_posts:
+            msg = f'A post with this title: "{cleaned_data.get("title")}", already exists!'
+            self._errors['title'] = self.error_class([msg])
+
 
 class PostUpdateForm(forms.ModelForm):
     class Meta:
@@ -35,6 +42,13 @@ class PostUpdateForm(forms.ModelForm):
             'small_description': TextInput(attrs={'class': 'form-control', 'placeholder': 'Write here...'}),
             'tags': TextInput(attrs={'class': 'form-control', 'placeholder': 'Add tags here...'})
         }
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        all_posts = Post.objects.filter(title__exact=cleaned_data.get('title'))
+        if all_posts:
+            msg = f'A post with this title: "{cleaned_data.get("title")}", already exists!'
+            self._errors['title'] = self.error_class([msg])
 
 
 class NewCommentForm(forms.ModelForm):
