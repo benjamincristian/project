@@ -6,7 +6,7 @@ from post.models import Post, PostComment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['image', 'title', 'tags', 'description', 'small_description']
+        fields = ['image', 'title', 'tags', 'small_description', 'description']
 
         widgets = {
             'title': TextInput(attrs={'class': 'form-control',
