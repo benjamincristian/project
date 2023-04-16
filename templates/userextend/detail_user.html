@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="">
-            <br>
+                <br>
                 <h1>{{ user.username }}</h1>
                 <hr class="solid" style="border-top: 3px solid #bbb;">
                 <h3>Hello {{ user.first_name }}, these are the information related to your account. You can change
@@ -23,14 +23,24 @@
                 <hr class="solid" style="border-top: 3px solid #bbb;">
                 {% if user.is_superuser %}
                     You silly, you can't delete your account! You're an admin.
-{#                    You donkey, you can't delete your account!#}
-{#                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F1d%2F55%2F07%2F1d5507f196ff3828dd667d5edd310d49.jpg&f=1&nofb=1&ipt=f22fe35970861ff54fb142d40cc01c12fa738c0cbfc5fcbdd05e7ed9199e61b2&ipo=images" width="286px" height="161">#}
+                    {#                    You donkey, you can't delete your account!#}
+                    {#                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F1d%2F55%2F07%2F1d5507f196ff3828dd667d5edd310d49.jpg&f=1&nofb=1&ipt=f22fe35970861ff54fb142d40cc01c12fa738c0cbfc5fcbdd05e7ed9199e61b2&ipo=images" width="286px" height="161">#}
                 {% else %}
                     <br>
-                    <form action="{% url 'delete-user' user.id %}" class="inline text-center">
-                        <button class="button-49">Delete</button>
-                        <h6 style="font-size: small">Delete your account</h6>
-                    </form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="{% url 'delete-user' user.id %}" class="inline text-center">
+                                <button class="button-49">Delete</button>
+                                <h6 style="font-size: small">Delete your account</h6>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form action="{% url 'password_change' %}" class="inline text-center">
+                                <button class="button-49">Password</button>
+                                <h6 style="font-size: small">Change your password</h6>
+                            </form>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
         </div>
